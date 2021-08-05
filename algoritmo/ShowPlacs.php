@@ -1,8 +1,6 @@
 <?php
 require_once "Gasoline.php";
 
-error_reporting(E_ERROR | E_PARSE);
-
 if (!is_null($_REQUEST['placa'])) {
 
     $placa = $_REQUEST['placa'];
@@ -11,12 +9,27 @@ if (!is_null($_REQUEST['placa'])) {
 
     if ($show == false) {
 
-        echo json_encode($show);
+        $error = ('
+           <div class="atencion" role="alert">
+                    <article>
+                    <h3><strong>¡Sólo puede introducir números y<br>únicamente un(01) dígito!</strong></h3>
+                    </article>
+                </div>
+         ');
+
+        $datos = [$show, $error];
+
+        echo json_encode($datos, JSON_FORCE_OBJECT, JSON_UNESCAPED_UNICODE);
 
     } else {
 
-        echo json_encode($show, JSON_FORCE_OBJECT, JSON_UNESCAPED_UNICODE);
+        $plac = ('
+            <h2>Consultando placa Nro: <b class="consult"><span class="parpadea text">' . $placa . '</b></h2>
+           <div class="alert alert-primary" role="alert">
+                <h3>El <b class="clo">' . $show[0] . ', ' . $show[1] . '</b> les corresponden<br>
+                a las placas que terminan en: <b class="clo"><span class="parpadea text">' . $show[2] . '</b></h3>
+            ');
 
+        echo json_encode($plac, JSON_FORCE_OBJECT, JSON_UNESCAPED_UNICODE);
     }
-
 }
