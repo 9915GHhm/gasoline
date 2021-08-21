@@ -1,5 +1,5 @@
 <?php
-require_once "Gasoline.php";
+require_once "../specify/Gasoline.php";
 
 if (!is_null($_REQUEST['placa'])) {
 

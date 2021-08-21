@@ -1,5 +1,5 @@
 <?php
-require_once "Gasoline.php";
+require_once "../specify/Gasoline.php";
 
 if (!empty($_REQUEST['fecha']) && is_string($_REQUEST['fecha'])) {
 
@@ -24,7 +24,7 @@ if (!empty($_REQUEST['fecha']) && is_string($_REQUEST['fecha'])) {
     } else {
 
         $date = ('
-            <h2>Consultando fecha: <b class="consult"><span class="parpadea text">' . $fecha . '</b></h2>
+            <h2>Consultando fecha: <b class="consult"><span class="parpadea text">' . $show[1] . '</b></h2>
             <div class="alert alert-primary" role="alert">
                 <h3>El <b class="clo">' . $show[0] . ', ' . $show[1] . '</b> les corresponden<br>
                 a las placas que terminan en: <b class="clo"><span class="parpadea text">' . $show[2] . '</b></h3>

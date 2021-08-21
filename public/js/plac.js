@@ -1,10 +1,9 @@
 var frm = document.getElementById('frm'); // llama al formulario "frm"
-
 var response = document.getElementById('response'); // Detecta el campo html del "div - response"
-
 
 frm.addEventListener('submit', function(e){  // Detecta el botón de tipo "submit" del fomulario "frm"
     e.preventDefault();
+    
     var datos = new FormData(frm);
     var fecha = datos.get('fecha');
     var placa = datos.get('placa');
@@ -12,7 +11,7 @@ frm.addEventListener('submit', function(e){  // Detecta el botón de tipo "submi
 if(placa != '' && fecha == ''){
 
  $.ajax({
-        url: "algoritmo/ShowPlacs.php",
+        url: "algoritmo/types/ShowPlacs.php",
         type: "POST",
         dataType: 'json',
         data: "placa=" + placa
@@ -38,7 +37,7 @@ if(placa != '' && fecha == ''){
 }else if(placa == '' && fecha != ''){
 
     $.ajax({
-        url: "algoritmo/ShowDate.php",
+        url: "algoritmo/types/ShowDate.php",
         type: "POST",
         dataType: 'json',
         data: "fecha=" + fecha
@@ -88,7 +87,7 @@ if(placa != '' && fecha == ''){
 
 function show() {
     $.ajax({
-        url: "algoritmo/ShowNow.php",
+        url: "algoritmo/types/ShowNow.php",
         type: "POST",
         dataType: 'json',
         }).done(function(r) { // La variable (r) contiene la información que viene del servidor (BackEnd).

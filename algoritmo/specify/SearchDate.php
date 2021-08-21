@@ -1,111 +1,30 @@
 <?php
-date_default_timezone_set("America/Caracas");
+require_once 'Gasoline.php';
+date_default_timezone_set('America/Caracas');
 error_reporting(E_ERROR | E_PARSE);
 
-class Matriculas
+class SearchDate extends Matriculas
 {
-    private $da;
-    private $dEnd;
-    private $dStar = '06/03/2021';
+    private $plas;
     private $know;
-    private $pattern = "/([-|\/|.])/";
-    private $Placas  = ['5 y 6', '7 y 8', '9 y 0', '1 y 2', '3 y 4'];
 
-    public function __construct()
+    public function __construct($plas, $know)
     {
 
-        $t        = time();
-        $this->da = date('d/m/Y', $t);
-
+        $this->plas = $plas;
+        $this->know = $know;
     }
 
-    public function today($end = null)
+    protected function searchDate()
     {
 
-        if (!is_null($end)) {
-
-            if (self::check($end) == true) {
-                $this->dEnd = $end;
-            } else {
-                return false;
-            }
-
-        } else {
-
-            $this->dEnd = $this->da;
-
-        }
-
-        $ce  = preg_split($this->pattern, $this->dEnd);
-        $en  = $ce[2] . "/" . $ce[1] . "/" . $ce[0]; // para hacerlo corresponder a que fecha le corresponde dichas placas por medio del resultado de la variable "$N".
-        $cs  = preg_split($this->pattern, $this->dStar);
-        $ini = $cs[2] . "/" . $cs[1] . "/" . $cs[0];
-
-        $fef = strtotime($en) - $fei = strtotime($ini);
-        $U   = intval($fef / 60 / 60 / 24, $fei / 60 / 60 / 24) % 5; // Cálcula el intervalo
-        $N   = ($U < 0) ? $U + 5 : $U;
-
-        $dateTime = strtotime($en);
-        $day      = date("d/m/Y l", $dateTime); // Para obtener el nombre del día de la semana.
-        $nameDay  = substr($day, 11);
-
-        if ($nameDay == 'Sunday') {
-            $seeDay = 'domingo';
-        } elseif ($nameDay == 'Monday') {
-            $seeDay = 'lunes';
-        } elseif ($nameDay == 'Tuesday') {
-            $seeDay = 'martes';
-        } elseif ($nameDay == 'Wednesday') {
-            $seeDay = 'miércoles';
-        } elseif ($nameDay == 'Thursday') {
-            $seeDay = 'jueves';
-        } elseif ($nameDay == 'Friday') {
-            $seeDay = 'viernes';
-        } elseif ($nameDay == 'Saturday') {
-            $seeDay = 'sábado';
-        } else {
-            $seeDay = 'Error!!!';
-        }
-
-        if (is_null($end)) {$this->know = $N;} // "$this->know" to el valor de "$N" para ser utilizado en la función "placas()".
-        return [$seeDay, $this->dEnd, $this->Placas[$N]];
-
-    }
-
-    public function check($checkDate)
-    {
-
-        $che   = preg_split($this->pattern, $checkDate);
-        $check = (checkdate($che[1], $che[0], $che[2])) ? true : false;
-        return $check;
-
-    }
-
-    public function checkPlac($num)
-    {
-        if (!is_numeric($num)) {
-            $checkPlac = false;
-        } else {
-            $checkPlac = (strlen($num) < 2) ? true : false;
-        }
-        return $checkPlac;
-    }
-
-    public function placas($plas)
-    {
-        if (self::checkPlac($plas) == false) {
-            return false;
-        }
-
-        self::today(); // Este código nos trae la varibale "$this->know" de la función "today()".
-
-        if ($plas == 1 || $plas == 2) {
+        if ($this->plas == 1 || $this->plas == 2) {
             $placs = 3;
-        } elseif ($plas == 3 || $plas == 4) {
+        } elseif ($this->plas == 3 || $this->plas == 4) {
             $placs = 4;
-        } elseif ($plas == 5 || $plas == 6) {
+        } elseif ($this->plas == 5 || $this->plas == 6) {
             $placs = 5;
-        } elseif ($plas == 7 || $plas == 8) {
+        } elseif ($this->plas == 7 || $this->plas == 8) {
             $placs = 1;
         } else {
             $placs = 2;
@@ -241,7 +160,6 @@ class Matriculas
                 break;
         }
 
-        $result = $this->today($date);
-        return $result; // ...y returna dicha fecha que se guarda en "$result" a la función "today()".
+        return $date; // ...y returna dicha fecha que se guarda en "$result" a la función "today()".
     }
 }

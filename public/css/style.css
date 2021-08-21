@@ -3,7 +3,7 @@ body{
 	padding: 0;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	color: #FFF;
-	background: #003c71;
+	background: #010232;
 	font-size: 1.2em;
 }
 
@@ -19,6 +19,7 @@ body{
 	text-align: center;
 	border: solid;
 	border-color: #73F090;
+	/*border-radius: 24px;*/
 }
 
 .box h1{
@@ -54,7 +55,7 @@ body{
 	display: block;
 	margin: 2px auto;
 	text-align: 2px solid #3498db;
-	border: 2px solid #3498db;
+	border: 3px solid #3498db;
 	padding: 6px 20px;
 	outline: none;
 	color: white;
@@ -115,42 +116,16 @@ strong{
 	color: #E20515;
 }
 
-
 .parpadea {
   
   animation-name: parpadeo;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
-  -webkit-animation-name:parpadeo;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-}
-
-@-moz-keyframes parpadeo{  
-   0% { opacity: 1.0; }
-  10% { opacity: 0.0; }
-  50% { opacity: 1.0; }
-}
-
-@-webkit-keyframes parpadeo {  
-   0% { opacity: 1.0; }
-  10% { opacity: 0.0; }
-  50% { opacity: 1.0; }
 }
 
 @keyframes parpadeo {  
    0% { opacity: 1.0; }
   10% { opacity: 0.0; }
   50% { opacity: 1.0; }
-}
-
-.mostrar{
-	background-color: #3498db;
-	widows: 80%;
-	margin-bottom: 25px;
-	padding: 10px;
-	color: #FFF;
 }

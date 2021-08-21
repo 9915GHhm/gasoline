@@ -11,7 +11,7 @@
         <form id="frm">
             <input type="text" name="fecha" id="fecha" placeholder="fecha">
             <input type="text" name="placa" id="placa" placeholder="matrícula">
-            <button type="submit" >Enviar</button>
+            <button type="submit">BUSCAR</button>
             <output type="number">
         </form>
         <div class="mt-3" id="response">
